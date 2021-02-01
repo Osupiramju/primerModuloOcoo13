@@ -1,0 +1,55 @@
+<odoo>
+
+    <record id="session_tree_view" model="ir.ui.view">
+        <field name="name">session.openacademy.tree</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <tree string="Sesiones">
+                <field name="name" required="1"/>
+                <field name="instructor" required="1"/>
+                <field name="start_date"/>
+                <field name="finish_date"/>
+                <field name="attendees_number"/>
+                <field name="available_places"/>
+                <field name="assists_percent"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="session_form_view" model="ir.ui.view">
+        <field name="name">openacademy.session.form</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <form string="Curso">
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                        <field name="instructor" required="1"/>
+                        <field name="start_date"/>
+                        <field name="duration"/>
+                        <field name="attendees_number"/>
+                        <field name="available_places"/>
+                        <field name="course_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="openacademy_session_action" model="ir.actions.act_window">
+        <field name="name">Lista de sesiones</field>
+        <field name="res_model">openacademy.session</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click para crear una sesión
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="openacademy_session_submenu"
+              parent="openacademy_course_menu"
+              action="openacademy_session_action"
+              name="Sesiones"/>
+
+</odoo>

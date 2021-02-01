@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="course_tree_view" model="ir.ui.view">
+        <field name="name">course.openacademy.tree</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <tree string="Cursos">
+                <field name="name" required="1"/>
+                <field name="description"/>
+                <field name="course_state"/>
+                <field name="session_ids"/>
+                <button class="btn btn-primary" name="active_button" string="Activar curso" type="object"
+                        attrs="{'invisible':[('course_state','=','active')]}"/>
+                <button class="btn btn-warning" name="finished_button" string="Finalizar curso" type="object"
+                        attrs="{'invisible':[('course_state','=','finished')]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="course_form_view" model="ir.ui.view">
+        <field name="name">openacademy.course.form</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <form string="Curso">
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                        <field name="description"/>
+                        <field name="course_state"/>
+                        <field name="minimum_participants"/>
+                        <field name="session_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="openacademy_course_action" model="ir.actions.act_window">
+        <field name="name">Lista de cursos</field>
+        <field name="res_model">openacademy.course</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click para crear un curso
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="openacademy_course_menu"
+              name="OpenAcademy"
+              groups="base.group_user"/>
+    <menuitem id="openacademy_course_submenu"
+              parent="openacademy_course_menu"
+              action="openacademy_course_action"
+              name="Cursos"/>
+
+</odoo>
