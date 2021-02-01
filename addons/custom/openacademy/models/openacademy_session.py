@@ -12,9 +12,9 @@ class Session(models.Model):
     start_date = fields.Date(string="Fecha inicio")
     course_id = fields.Many2one(string="Cursos", comodel_name='openacademy.course',
                                 domain=[('course_state', '=', 'toStart')])
-    available_places = fields.Integer(string="Sitios disponibles")
+    available_places = fields.Integer(string="Sitios disponibles", default=0)
     attendees_number = fields.Integer(string="Número asistentes", default=0)
-    duration = fields.Integer(string="Duración sesiones")
+    duration = fields.Integer(string="Duración sesiones", default=0)
     assists_percent = fields.Float(string="Porcentaje asistentes", compute="compute_assists_percent")
     finish_date = fields.Date(string="Fecha fin", compute="compute_finish_date")
 

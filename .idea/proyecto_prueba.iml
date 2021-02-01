@@ -4,10 +4,15 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/proyecto_prueba_venv" />
+      <excludeFolder url="file://$MODULE_DIR$/primerModuloOdoo13Venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8 (proyecto_prueba_env)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (primerModuloOdoo13)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="odoo13" />
     <orderEntry type="module" module-name="odoo_13" />
+  </component>
+  <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="$USER_HOME$/odoo_13/requirements.txt" />
+    <option name="versionSpecifier" value="Strong equality (==x.y.z)" />
   </component>
 </module>

@@ -18,17 +18,23 @@ class Course(models.Model):
 
     # attendees_number = fields.Integer(related="session_ids.attendees_number")
 
-    def active_button(self):
-        for obj in self:
-            for session in obj.session_ids:
-                if obj.minimum_participants >= session.attendees_number:
-                    raise exceptions.Warning(
-                        'No hay el número suficiente de asistentes.')
-                elif len(obj.session_ids) > 1:
-                    raise exceptions.Warning('Hay que crear al menos una sesión.')
-                else:
-                    obj.course_state = 'active'
 
-    def finished_button(self):
-        for obj in self:
-            obj.course_state = 'finished'
+def active_button(self):
+    for obj in self:
+        for session in obj.session_ids:
+            if obj.minimum_participants >= session.attendees_number:
+                raise exceptions.Warning(
+                    'No hay el número suficiente de asistentes.')
+        # elif not obj.session_ids:
+        # raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
+        # elif not self.env['openacademy.session'].search([]):
+        # raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
+            elif len(obj.session_ids) < 1:
+                raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
+            else:
+                obj.course_state = 'active'
+
+
+def finished_button(self):
+    for obj in self:
+        obj.course_state = 'finished'
