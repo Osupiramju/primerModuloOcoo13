@@ -8,13 +8,13 @@ class Session(models.Model):
     _description = "Open Academy session Model"
 
     name = fields.Char(string="Nombre sesion")
-    instructor = fields.Char(string="Nombre instructor")
+    instructor = fields.One2many(string="Nombre instructor", comodel_name="res.partner")
     start_date = fields.Date(string="Fecha inicio")
     course_id = fields.Many2one(string="Cursos", comodel_name='openacademy.course',
                                 domain=[('course_state', '=', 'toStart')])
-    available_places = fields.Integer(string="Sitios disponibles", default=0)
-    attendees_number = fields.Integer(string="Número asistentes", default=0)
-    duration = fields.Integer(string="Duración sesiones", default=0)
+    available_places = fields.Integer(string="Sitios disponibles")
+    attendees_number = fields.Integer(string="Número asistentes")
+    duration = fields.Integer(string="Duración sesiones")
     assists_percent = fields.Float(string="Porcentaje asistentes", compute="compute_assists_percent")
     finish_date = fields.Date(string="Fecha fin", compute="compute_finish_date")
 

@@ -18,23 +18,24 @@ class Course(models.Model):
 
     # attendees_number = fields.Integer(related="session_ids.attendees_number")
 
+    @api.depends("session_ids", "minimum_participants")
+    def active_button(self):
 
-def active_button(self):
-    for obj in self:
-        for session in obj.session_ids:
-            if obj.minimum_participants >= session.attendees_number:
-                raise exceptions.Warning(
-                    'No hay el número suficiente de asistentes.')
-        # elif not obj.session_ids:
-        # raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
-        # elif not self.env['openacademy.session'].search([]):
-        # raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
-            elif len(obj.session_ids) < 1:
-                raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
-            else:
-                obj.course_state = 'active'
+        for obj in self:
+            if not obj.session_ids:
+                raise exceptions.Warning('No hay ninguna sesión creada.')
+                # elif not obj.session_ids:
+                # raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
+                # elif not self.env['openacademy.session'].search([]):
+                # raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
+                # if not len(obj.session_ids):
+                # raise exceptions.Warning('Hay que crear al menos una sesión para que un curso se active.')
+            for session in obj.session_ids:
+                if obj.minimum_participants >= session.attendees_number:
+                    raise exceptions.Warning("No hay el número suficiente de asistentes")
+                else:
+                    obj.course_state = 'active'
 
-
-def finished_button(self):
-    for obj in self:
-        obj.course_state = 'finished'
+    def finished_button(self):
+        for obj in self:
+            obj.course_state = 'finished'
