@@ -1,0 +1,36 @@
+<odoo>
+
+    <record id="session_wizard_form_view" model="ir.ui.view">
+        <field name="name">openacademy.session.wizard.form</field>
+        <field name="model">openacademy.session.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Curso" create="0">
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                        <field name="instructor" required="1"/>
+                        <field name="start_date"/>
+                        <field name="duration"/>
+                        <field name="attendees_number"/>
+                        <field name="available_places"/>
+                        <field name="course_id"/>
+                    </group>
+                    <footer>
+                        <button name="save_session" string="Guardar" class="oe_highlight" type="object"/>
+                        <button string="Cancel" class="oe_right" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_session_wizard" model="ir.actions.act_window">
+        <field name="name">Creación de sesión</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">openacademy.session.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="session_wizard_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

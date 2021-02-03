@@ -9,7 +9,8 @@
                 <field name="name" required="1"/>
                 <field name="description"/>
                 <field name="course_state"/>
-                <field name="session_ids"/>
+                <field name="session_ids" widget="many2many_tags"/>
+                <button class="btn btn-success" name="%(action_session_wizard)d" string="Crear sesión" type="action" context="{'default_course_id': active_id}"/>
                 <button class="btn btn-primary" name="active_button" string="Activar curso" type="object"
                         attrs="{'invisible':[('course_state','=','active')]}"/>
                 <button class="btn btn-warning" name="finished_button" string="Finalizar curso" type="object"
