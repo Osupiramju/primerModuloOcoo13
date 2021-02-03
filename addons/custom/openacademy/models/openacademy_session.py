@@ -8,7 +8,7 @@ class Session(models.Model):
     _description = "Open Academy session Model"
 
     name = fields.Char(string="Nombre sesion")
-    instructor = fields.One2many(string="Nombre instructor", comodel_name="res.partner")
+    instructor = fields.Char(string="Nombre instructor")
     start_date = fields.Date(string="Fecha inicio")
     course_id = fields.Many2one(string="Cursos", comodel_name='openacademy.course',
                                 domain=[('course_state', '=', 'toStart')])

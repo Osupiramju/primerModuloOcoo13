@@ -4,7 +4,7 @@
         <field name="name">session.openacademy.tree</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <tree string="Sesiones">
+            <tree string="Sesiones" create="0">
                 <field name="name" required="1"/>
                 <field name="instructor" required="1"/>
                 <field name="start_date"/>
@@ -20,7 +20,7 @@
         <field name="name">openacademy.session.form</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <form string="Curso">
+            <form string="Curso" create="0">
                 <sheet>
                     <group>
                         <field name="name" required="1"/>
